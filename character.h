@@ -1,5 +1,20 @@
 namespace character
 {
+
+    enum turn
+    {
+        player,
+        enemy
+    };
+
+    enum actions
+    {
+        attack,
+        magic,
+        block,
+        nothing
+    };
+
     class Character
     {
         public:
@@ -31,11 +46,15 @@ namespace character
             {
             }
 
-            definitions::actions getAction()
+            actions getAction()
             {
                 if (IsKeyDown(KEY_RIGHT)) 
                 {
-                    return definitions::attack;
+                    return attack;
+                }
+                else
+                {
+                    return nothing;
                 }
             }
     };

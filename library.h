@@ -6,19 +6,26 @@
 
 namespace library
 {
-    void update(definitions::turn currentTurn, character::Player player)
+    void update(character::turn* currentTurn, character::Player player)
     {
-        if (currentTurn == definitions::player)
+        if (*currentTurn == character::player)
         {
-            definitions::actions playerAction = player.getAction();
-            if (playerAction == definitions::attack)
+            character::actions playerAction = player.getAction();
+            if (playerAction == character::attack)
             {
+                *currentTurn = character::enemy;
                 std::cout << "Player attack\n";
             }
         }
+        // Enemy turn
         else
         {
-            std::cout << "WHIP\n";
+            character::actions playerAction = player.getAction();
+            if (playerAction == character::attack)
+            {
+                *currentTurn = character::player;
+                std::cout << "Enemy attack\n";
+            }
         }
     }
 
@@ -37,12 +44,12 @@ namespace library
                definitions::SCREEN_HEIGHT,
                "raylib [core] example - basic window");
     SetTargetFPS(60);               // Set our game to run at 60 frames-per-second
-    definitions::turn currentTurn = definitions::player;
+    character::turn currentTurn = character::player;
     character::Player player = character::Player("Sam", 50);
     // Main game loop
     while (!WindowShouldClose())    // Detect window close button or ESC key
     {
-        update(currentTurn, player);
+        update(&currentTurn, player);
         draw();
     }
     // De-Initialization
