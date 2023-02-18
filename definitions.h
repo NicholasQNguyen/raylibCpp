@@ -8,4 +8,11 @@ namespace definitions
         player,
         enemy
     };
+
+    enum actions
+    {
+        attack,
+        magic,
+        block
+    };
 }

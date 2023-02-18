@@ -23,4 +23,20 @@ namespace character
             std::string name;
             int hp;
     };
+
+    class Player: public Character
+    {
+        public:
+            Player(std::string name, int hp): Character(name, hp)
+            {
+            }
+
+            definitions::actions getAction()
+            {
+                if (IsKeyDown(KEY_RIGHT)) 
+                {
+                    return definitions::attack;
+                }
+            }
+    };
 }
