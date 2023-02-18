@@ -6,6 +6,26 @@
 
 namespace library
 {
+    void update(definitions::turn currentTurn)
+    {
+        if (currentTurn == definitions::player)
+        {
+            std::cout << "DAB\n";
+        }
+        else
+        {
+            std::cout << "WHIP\n";
+        }
+    }
+
+    void draw()
+    {
+        BeginDrawing();
+            ClearBackground(RAYWHITE);
+            DrawText("This will be an RPG", 190, 200, 20, LIGHTGRAY);
+        EndDrawing();
+    }
+
     int main()
     {
     // Initialization
@@ -19,20 +39,8 @@ namespace library
     // Main game loop
     while (!WindowShouldClose())    // Detect window close button or ESC key
     {
-        // Update
-        if (currentTurn == definitions::player)
-        {
-            std::cout << "DAB\n";
-        }
-        else
-        {
-            std::cout << "WHIP\n";
-        }
-        // Draw
-        BeginDrawing();
-            ClearBackground(RAYWHITE);
-            DrawText("This will be an RPG", 190, 200, 20, LIGHTGRAY);
-        EndDrawing();
+        update(currentTurn);
+        draw();
     }
     // De-Initialization
     CloseWindow();        // Close window and OpenGL context
